@@ -32,6 +32,21 @@ int main()
     while (auto token = tokenizer2.nextToken()) {
         cout << *token << "\n";
     }
+#ifdef __cpp_lib_generator
+    cout << "Testing token generation: \n";
+
+
+    for (auto t : tokenizer2.Tokens()) {
+        cout << t << "\n";
+    }
+
+    cout << "Testing static token generation: \n";
+
+
+    for (auto t : StringTokenizer::GenerateTokens (str)) {
+        cout << t << "\n";
+    }
+#endif
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

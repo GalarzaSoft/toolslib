@@ -35,7 +35,7 @@ StringTokenizer::TokenType StringTokenizer::nextToken()
 }
 
 #ifdef __cpp_lib_generator
-std::generator<string_view> Tokens() {
+std::generator<string_view> StringTokenizer::Tokens() {
     std::string::iterator start = original.begin();
 
     while (start != original.end()) {

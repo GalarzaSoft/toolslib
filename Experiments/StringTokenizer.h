@@ -3,7 +3,7 @@
 #include <string>
 #include <optional>
 
-#ifdef __cpp_lib_generator
+#if (defined(__has_include) && __has_include(<generator>))
 #include <generator>
 #endif
 
@@ -29,8 +29,19 @@ public:
 	bool hasMoreTokens() const { return start != original.end(); }
 
 	TokenType nextToken();
+
 #ifdef __cpp_lib_generator
-	std::generator<TokenType> Tokens();
+	std::generator<std::string_view> Tokens();
+
+	static std::generator<std::string_view> GenerateTokens(const std::string& orig, const int start = 0, const std::string_view& separator = " ") {
+		StringTokenizer tokenizer{ orig, start, separator };
+		return tokenizer.Tokens();
+	}
+
+	static std::generator<std::string_view> GenerateTokens(const std::string& orig, const std::string_view& separator) {
+		StringTokenizer tokenizer{ orig, separator };
+		return tokenizer.Tokens();
+	}
 #endif
 
 };
