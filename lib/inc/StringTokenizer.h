@@ -7,7 +7,6 @@
 #include <generator>
 #endif
 
-
 class StringTokenizer
 {
 private:
